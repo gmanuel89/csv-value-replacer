@@ -10,6 +10,8 @@ import csv
 
 # Input CSV file (to be replaced)
 Tk().withdraw()
+messagebox.showinfo(title='Select CSV file', message='Select the CSV file with values to be replaced')
+Tk().withdraw()
 input_csv_file = filedialog.askopenfilename(filetypes=[('CSV files', '.csv')])
 Tk().withdraw()
 messagebox.showinfo(title='CSV file selected', message="The CSV file selected is '%s'" % (input_csv_file))
@@ -19,6 +21,8 @@ with open(input_csv_file, 'r', encoding='UTF8') as input_file:
     input_csv_file_lines = list(csv.reader(input_file))
 
 # Input CSV file (with replacing map --> "Old value" ; "New value")
+Tk().withdraw()
+messagebox.showinfo(title='Select map CSV file', message='Select the CSV file with the "old"-"new" map for value replacement')
 Tk().withdraw()
 input_csv_file_with_map = filedialog.askopenfilename(filetypes=[('CSV files', '.csv')])
 Tk().withdraw()
@@ -38,3 +42,7 @@ with open (input_csv_file, 'w+', encoding='UTF8', newline='') as output_file:
     csv_writer = csv.writer(output_file)
     for line in output_csv_file_lines:
             csv_writer.writerow(line)
+
+# Success
+Tk().withdraw()
+messagebox.showinfo(title='Success', message="The selected the CSV file:\n'%s'\nwas successfully processed" % (input_csv_file))
