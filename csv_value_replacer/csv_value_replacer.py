@@ -1,12 +1,8 @@
 # Import libraries
 from csv_value_replacer.libraries import *
-from parameters import *
 from csv_value_replacer.create_replacing_map import create_replacing_map
 from csv_value_replacer.replace_csv_values import replace_csv_values
 
-from tkinter import *
-from tkinter import Entry, messagebox, filedialog
-import csv
 
 # Input map CSV file (with replacing map --> "Old value" ; "New value")
 Tk().withdraw()
