@@ -46,10 +46,11 @@
     <body class="vscode-body vscode-light">
         <h1 id="csv-value-replacer">csv-value-replacer</h1>
 <p>The application allows to replace values within a CSV file.</p>
-<p>The first file that is been asked the user to provide is a CSV file containing the map of values to be replaced, with one column identified as &quot;new&quot; and the other column identified as &quot;old&quot;.
-The application can detect the word &quot;new&quot; and &quot;old&quot; within the header (in a case-insensitive manner), therefore the columns can be named freely as long as the header contains the two key words (e.g. &quot;new values&quot; - &quot;old values&quot;, or &quot;new items&quot; - &quot;old items&quot;, or &quot;NEW&quot; - &quot;OLD&quot;, etc...).</p>
+<p>The first file that is been asked the user to provide is a CSV file containing the map of values to be replaced, with one column identified as &quot;new&quot; and the other column identified as &quot;old&quot;, along with the &quot;column&quot;(s) in which the values must searched in (if empty, the values will be replaced across the whole file).</p>
+<p>The application can detect the word &quot;new&quot;, &quot;old&quot; and &quot;column&quot; within the header (in a case-insensitive manner), therefore the columns can be named freely as long as the header contains the three key words (e.g. &quot;new values&quot; - &quot;old values&quot; - &quot;columns to replace&quot;, or &quot;new items&quot; - &quot;old items&quot; - &quot;column to use&quot;, or &quot;NEW&quot; - &quot;OLD&quot; - &quot;COLUMN&quot;, etc...).</p>
 <p><img src="file:////images/dialog.png" alt="" title="Map csv dialog"></p>
-<p><img src="file:////images/map_csv.png" alt="" title="Map csv"></p>
+<p><img src="file:////images/map_csv.png" alt="" title="Map csv without columns">
+<img src="file:////images/map_csv2.png" alt="" title="Map csv with columns"></p>
 <p>The second file that is been asked the user to provide is the CSV file to be modified, with the specific values being replaced according to the map provided.</p>
 <p><img src="file:////images/dialog2.png" alt="" title="Input csv"></p>
 <p>In the worst case scenario, no changes are applied to the files.</p>
