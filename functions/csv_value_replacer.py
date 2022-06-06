@@ -1,7 +1,10 @@
 # Import libraries
-from csv_value_replacer.libraries import *
-from csv_value_replacer.create_replacing_map import create_replacing_map
-from csv_value_replacer.replace_csv_values import replace_csv_values
+from functions.libraries import *
+from functions.create_replacing_map import *
+from functions.replace_csv_values import *
+from functions.read_csv_file import *
+from functions.write_csv_file import *
+import sys
 
 
 # Input map CSV file (with replacing map --> "Old value" ; "New value")
@@ -14,8 +17,7 @@ messagebox.showinfo(title='CSV file selected', message="The CSV file selected is
 # Try to read map only if a file is selected
 if input_csv_file_with_map != "":
     # Open CSV with mapping
-    with open(input_csv_file_with_map, 'r', encoding='UTF8') as input_file:
-        input_csv_file_with_map_lines = list(csv.reader(input_file))
+    input_csv_file_with_map_lines = read_csv_file(input_csv_file_with_map)
     # Create the map
     mapping_dictionary_array = create_replacing_map(input_csv_file_with_map_lines)
 else :
@@ -33,16 +35,11 @@ messagebox.showinfo(title='CSV file selected', message="The CSV file selected is
 # Run only if a file is selected
 if input_csv_file_with_map != "":
     # Read the input CSV
-    with open(input_csv_file, 'r', encoding='UTF8') as input_file:
-        # Read CSV file lines
-        input_csv_file_lines = list(csv.reader(input_file))
+    input_csv_file_lines = read_csv_file(input_csv_file)
     # Generate the output
     output_csv_file_lines = replace_csv_values(input_csv_file_lines, mapping_dictionary_array)
     # Write the output file onto the input file   
-    with open (input_csv_file, 'w+', encoding='UTF8', newline='') as output_file:
-        csv_writer = csv.writer(output_file)
-        for line in output_csv_file_lines:
-                csv_writer.writerow(line)
+    write_csv_file(output_csv_file_lines, input_csv_file)
     # Success
     Tk().withdraw()
     messagebox.showinfo(title='Success', message="The selected the CSV file:\n'%s'\nwas successfully processed" % (input_csv_file))
