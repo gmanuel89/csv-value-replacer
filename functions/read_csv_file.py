@@ -3,12 +3,20 @@ import csv
 import sys
 
 ## Read input csv file (returns a list of rows)
-def read_csv_file(input_csv_file):
+def read_csv_file(input_csv_file, output_format='list'):
     # Open the CSV file and convert it to a list
-    with open (input_csv_file, 'r', encoding='UTF8') as input_file:
+    with open(input_csv_file, 'r', encoding='UTF8') as input_file:
         # Prevent possible errors due to large columns (beyond 131072 characters)
         try:
-            input_csv_file_lines = list(csv.reader(input_file))
+            if output_format == 'list':
+                input_csv_file_lines = list(csv.reader(input_file))
+            elif output_format == 'dictionary':
+                input_csv_file_dictionary = csv.DictReader(input_file)
+                input_csv_file_lines = []
+                for row in input_csv_file_dictionary:
+                    input_csv_file_lines.append(dict(row))
+            else:
+                input_csv_file_lines = csv.reader(input_file)
         except:
             print("Presence of too large cells!!!")
             field_size_limit = sys.maxsize
@@ -18,6 +26,14 @@ def read_csv_file(input_csv_file):
                     break
                 except:
                     field_size_limit = int(field_size_limit / 10)
-            input_csv_file_lines = list(csv.reader(input_file))
+            if output_format == 'list':
+                input_csv_file_lines = list(csv.reader(input_file))
+            elif output_format == 'dictionary':
+                input_csv_file_dictionary = csv.DictReader(input_file)
+                input_csv_file_lines = []
+                for row in input_csv_file_dictionary:
+                    input_csv_file_lines.append(dict(row))
+            else:
+                input_csv_file_lines = csv.reader(input_file)
     # return
     return input_csv_file_lines

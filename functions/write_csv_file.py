@@ -9,14 +9,18 @@ def write_csv_file(csv_file_content, output_file_name):
     if not output_file_name.endswith('.csv') : output_file_name = output_file_name + '.csv'
     # Write file content
     with open (output_file_name, 'w+', encoding='UTF8', newline='') as output_file:
-        csv_writer = csv.writer(output_file)
         # If it is a list of row...
-        if isinstance(csv_file_content, list):
-            for line in csv_file_content:
-                csv_writer.writerow(line)
+        if isinstance(csv_file_content[0], list):
+            csv_writer = csv.writer(output_file)
+            csv_writer.writerows(csv_file_content)
+        elif isinstance(csv_file_content[0], dict):
+            csv_writer = csv.DictWriter(output_file, fieldnames=csv_file_content[0].keys())
+            csv_writer.writeheader()
+            csv_writer.writerows(csv_file_content)
         else:
             import openpyxl
             if isinstance(csv_file_content, openpyxl.worksheet.worksheet.Worksheet):
+                csv_writer = csv.writer(output_file)
                 for row in csv_file_content.rows:
                     excel_output_row = []
                     for c in row:
