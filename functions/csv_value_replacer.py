@@ -37,7 +37,7 @@ if input_csv_file_with_map != "":
     # Read the input CSV
     input_csv_file_lines = read_csv_file(input_csv_file)
     # Generate the output
-    output_csv_file_lines = replace_csv_values(input_csv_file_lines, mapping_dictionary_array)
+    output_csv_file_lines = replace_csv_values(input_csv_file_lines, mapping_dictionary_array, add_new_column_if_match_is_missing=True)
     # Write the output file onto the input file   
     write_csv_file(output_csv_file_lines, input_csv_file)
     # Success
